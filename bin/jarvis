@@ -1,0 +1,60 @@
+#!/usr/bin/env ruby
+require 'jarvis'
+require 'optparse'
+
+
+
+_option = {}
+_option[:escalate] = false
+
+opt_parser = OptionParser.new do |opt|
+  opt.banner = ''
+
+  opt.seperator 'stuff made awesome'
+
+  opt.seperator 'jarvis [--option] [command]'
+
+  opt.seperator ''
+
+  opt.seperator 'AVAILABLE COMMAND LIST'
+  opt.seperator '   create      [command information statement]'
+  opt.seperator '               [command information statement]'
+  opt.seperator '   list        [command information statement]'
+  opt.seperator '   remove      [command information statement]'
+
+  opt.seperator ''
+
+  opt.seperator 'AVAILABLE OPTION LIST'
+
+  opt.on('--escalate', '[option information statement]') do
+    _option[:escalate] = true
+  end
+
+  opt.seperator ''
+
+  opt.on('--version', '[version information]') do
+    print Jarvis::VERSION
+    exit
+  end
+
+  opt.seperator ''
+
+  opt.on('--information', '[library information]') do
+    print opt_parser
+  end
+
+  opt.seperator ''
+end
+
+opt.parser.parse!
+
+case ARGV[0]
+when 'create'
+  Jarvis::CREATE.make(_option)
+when 'complete'
+  Jarivs::COMPLETE.make
+when 'list'
+  Jarvis::LIST.make
+else
+  print opt_parser
+end

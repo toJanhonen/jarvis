@@ -1,0 +1,2 @@
+#library
+require 'jarvis/version'

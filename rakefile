@@ -1,0 +1,28 @@
+require File.expand_path('../lib/jarvis/version', __FILE__)
+require 'rake/testtask'
+
+
+
+desc 'unit test environment'
+task :unit do
+  Rake::TestTask.new do |test|
+    test.libs         = ['lib']
+    test.test_files   = FileList['suite/*_case.rb']
+  end
+end
+
+
+
+desc 'build environment'
+task :build do
+  system("gem build jarvis.gemspec")
+end
+
+desc 'install environment'
+task :install do
+  system("gem install jarvis-#{Jarvis::VERSION}.gem")
+end
+
+
+
+task :default => :unit
