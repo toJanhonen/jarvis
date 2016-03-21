@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'jarvis'
+require 'include_case'
 
 
 
